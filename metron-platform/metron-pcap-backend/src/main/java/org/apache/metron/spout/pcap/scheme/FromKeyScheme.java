@@ -18,20 +18,22 @@
 
 package org.apache.metron.spout.pcap.scheme;
 
-import backtype.storm.tuple.Fields;
-import backtype.storm.tuple.Values;
-import com.google.common.collect.ImmutableList;
+import java.util.List;
+
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.log4j.Logger;
 import org.apache.metron.common.utils.timestamp.TimestampConverter;
 import org.apache.metron.common.utils.timestamp.TimestampConverters;
+import org.apache.metron.pcap.Endianness;
 import org.apache.metron.pcap.PcapHelper;
-import org.apache.metron.spout.pcap.Endianness;
-import storm.kafka.KeyValueScheme;
 
-import java.util.List;
+import storm.kafka.KeyValueScheme;
+import backtype.storm.tuple.Fields;
+import backtype.storm.tuple.Values;
+
+import com.google.common.collect.ImmutableList;
 
 public class FromKeyScheme implements KeyValueScheme, KeyConvertible {
   private static final Logger LOG = Logger.getLogger(FromKeyScheme.class);

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.metron.spout.pcap;
+package org.apache.metron.pcap;
 
 import java.nio.ByteOrder;
 

@@ -18,12 +18,14 @@
 
 package org.apache.metron.pcap;
 
-import com.google.common.base.Joiner;
-import com.google.common.base.Splitter;
-import com.google.common.collect.Iterables;
+import java.io.EOFException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.log4j.Logger;
-import org.apache.metron.spout.pcap.Endianness;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.krakenapps.pcap.decoder.ethernet.EthernetType;
@@ -37,13 +39,9 @@ import org.krakenapps.pcap.packet.PcapPacket;
 import org.krakenapps.pcap.util.Buffer;
 import org.krakenapps.pcap.util.ByteOrderConverter;
 
-import java.io.EOFException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
-
-import static org.apache.metron.pcap.Constants.*;
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
 
 public class PcapHelper {
 
@@ -77,8 +75,8 @@ public class PcapHelper {
                               );
   }
 
-  public static boolean swapBytes(org.apache.metron.spout.pcap.Endianness endianness) {
-    return endianness == org.apache.metron.spout.pcap.Endianness.LITTLE;
+  public static boolean swapBytes(Endianness endianness) {
+    return endianness == Endianness.LITTLE;
   }
 
   public static byte[] getPcapGlobalHeader(Endianness endianness) {
